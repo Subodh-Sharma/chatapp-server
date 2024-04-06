@@ -15,7 +15,8 @@ const PORT = process.env.PORT;
 
 const __dirname = path.resolve();
 
-
+app.use(express.json({limit:"30mb",extended:true}));
+app.use(express.urlencoded({limit:"30mb",extended: true}));
 app.use(express.json()); // to parse the incoming requests with JSON payloads (from req.body)
 app.use(cookieParser());
 
@@ -24,12 +25,12 @@ app.use("/api/messages", messageRoutes);
 app.use("/api/users", userRoutes);
 
 // app.use(express.static(path.join(__dirname, "/frontend/dist")));
-
+const port  = process.env.PORT || 8000;
 app.get("/", (req, res) => {
 	res.send("Welcome to SUBODH CHAT APP SERVER");
 });
 
-server.listen(PORT, () => {
+server.listen(port, () => {
 	connectToMongoDB();
-	console.log(`Server Running on port ${PORT}`);
+	console.log(`Server Running on port ${port}`);
 });
