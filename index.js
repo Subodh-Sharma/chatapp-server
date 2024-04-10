@@ -18,23 +18,23 @@ dotenv.config();
 
 // const __dirname = path.resolve();
 
-app.use(express.json({limit:"30mb",extended:true}));
+app.use(express.json());
 app.use(express.urlencoded({limit:"30mb",extended: true}));
-app.use(cookieParser());
+// app.use(cookieParser());
 app.use(morgan("dev"));
 app.use(cors());
+
+app.get("/", (req, res) => {
+	res.send("Welcome to SUBODH CHAT APP SERVER");
+});
 
 app.use("/api/auth", authRoutes);
 app.use("/api/messages", messageRoutes);
 app.use("/api/users", userRoutes);
-
 // app.use(express.static(path.join(__dirname, "/frontend/dist")));
-app.get("/", (req, res) => {
-	res.send("Welcome to SUBODH CHAT APP SERVER");
-});
 const port  = process.env.PORT || 8000;
 
-app.listen(port, () => {
-	connectToMongoDB();
+connectToMongoDB();
+server.listen(port, () => {
 	console.log(`Server Running on port ${port}`);
 });
