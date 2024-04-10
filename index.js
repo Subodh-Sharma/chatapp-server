@@ -28,10 +28,10 @@ app.use("/api/messages", messageRoutes);
 app.use("/api/users", userRoutes);
 
 // app.use(express.static(path.join(__dirname, "/frontend/dist")));
-const port  = process.env.PORT || 8000;
 app.get("/", (req, res) => {
 	res.send("Welcome to SUBODH CHAT APP SERVER");
 });
+const port  = process.env.PORT || 8000;
 
 server.listen(port, () => {
 	connectToMongoDB();
