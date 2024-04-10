@@ -20,7 +20,7 @@ dotenv.config();
 
 app.use(express.json());
 app.use(express.urlencoded({limit:"30mb",extended: true}));
-// app.use(cookieParser());
+app.use(cookieParser());
 app.use(morgan("dev"));
 app.use(cors());
 
