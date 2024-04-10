@@ -1,5 +1,6 @@
 import path from "path";
 import express from "express";
+import mongoose from "mongoose";
 import dotenv from "dotenv";
 import cookieParser from "cookie-parser";
 import morgan from "morgan"
@@ -15,7 +16,7 @@ import { app, server } from "./socket/socket.js";
 dotenv.config();
 // const PORT = process.env.PORT;
 
-const __dirname = path.resolve();
+// const __dirname = path.resolve();
 
 app.use(express.json({limit:"30mb",extended:true}));
 app.use(express.urlencoded({limit:"30mb",extended: true}));
@@ -33,7 +34,7 @@ app.get("/", (req, res) => {
 });
 const port  = process.env.PORT || 8000;
 
-server.listen(port, () => {
+app.listen(port, () => {
 	connectToMongoDB();
 	console.log(`Server Running on port ${port}`);
 });
